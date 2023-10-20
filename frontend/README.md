@@ -57,7 +57,7 @@ serve -l 8000 dist/
 If you are hosting your application somewhere else than on your localhost, you need to the public DNS address and port of your API backend.
 For that, do the following:
 ```sh
-export VITE_BASE_API_URL="http://abc12378-ab00-cd11-de22.ma.bw-cloud-instance.org:8001"
+export VITE_API_BASE_URL="http://abc12378-ab00-cd11-de22.ma.bw-cloud-instance.org:8001"
 
 # then run either
 npm run dev -- --host --port 8000
