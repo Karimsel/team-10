@@ -25,7 +25,7 @@ public class Application {
                 // allow CORS requests for all resources and HTTP methods from the frontend origin
                 CorsRegistration registration = registry.addMapping("/**")
                     .allowedMethods("OPTIONS", "HEAD", "GET", "PUT", "POST", "DELETE")
-                    .allowedOrigins("http://localhost:5173");
+                    .allowedOrigins("http://localhost:5173").allowedOrigins("http://193.196.55.75:8000");
                 String frontendUrl = System.getenv("FRONTEND_URL");
                 if (frontendUrl != null) {
                     registration.allowedOrigins(frontendUrl);
