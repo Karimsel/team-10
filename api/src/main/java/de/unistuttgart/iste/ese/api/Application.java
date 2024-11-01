@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.lang.NonNullApi;
+import org.springframework.web.servlet.config.annotation.CorsRegistration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -22,9 +23,13 @@ public class Application {
             @Override
             public void addCorsMappings(@Nonnull CorsRegistry registry) {
                 // allow CORS requests for all resources and HTTP methods from the frontend origin
-                registry.addMapping("/**")
-                        .allowedMethods("OPTIONS", "HEAD", "GET", "PUT", "POST", "DELETE")
-                        .allowedOrigins("http://localhost:5173");
+                CorsRegistration registration = registry.addMapping("/**")
+                    .allowedMethods("OPTIONS", "HEAD", "GET", "PUT", "POST", "DELETE")
+                    .allowedOrigins("http://localhost:5173");
+                String frontendUrl = System.getenv("FRONTEND_URL");
+                if (frontendUrl != null) {
+                    registration.allowedOrigins(frontendUrl);
+                }
             }
         };
     }
