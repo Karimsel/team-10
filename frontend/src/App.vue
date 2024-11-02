@@ -9,17 +9,20 @@ import "agnostic-vue/dist/index.css";
 
 <template>
   <div id="app">
-    <Header isHeaderContentStart>
+    <Header isHeaderContentStart class="header-top">
       <template v-slot:headernav>
         <HeaderNav>
           <HeaderNavItem>
-            <RouterLink to="/">Home</RouterLink>
+            <RouterLink to="/">ShoppingList</RouterLink>
           </HeaderNavItem>
           <HeaderNavItem>
-            <RouterLink to="/about">About</RouterLink>
+            <RouterLink to="/mealPlan">MealPlan</RouterLink>
           </HeaderNavItem>
           <HeaderNavItem>
-            <RouterLink to="/cats">Cats</RouterLink>
+            <RouterLink to="/recipes">Recipes</RouterLink>
+          </HeaderNavItem>
+          <HeaderNavItem>
+            <RouterLink to="/statistics">Statistics</RouterLink>
           </HeaderNavItem>
         </HeaderNav>
       </template>
@@ -29,6 +32,25 @@ import "agnostic-vue/dist/index.css";
       <RouterView/>
     </div>
   </div>
+
+  <Header isHeaderContentStart class="header-bottom">
+    <template v-slot:headernav>
+      <HeaderNav>
+        <HeaderNavItem>
+          <RouterLink to="/">ShoppingList</RouterLink>
+        </HeaderNavItem>
+        <HeaderNavItem>
+          <RouterLink to="/mealPlan">MealPlan</RouterLink>
+        </HeaderNavItem>
+        <HeaderNavItem>
+          <RouterLink to="/recipes">Recipes</RouterLink>
+        </HeaderNavItem>
+        <HeaderNavItem>
+          <RouterLink to="/statistics">Statistics</RouterLink>
+        </HeaderNavItem>
+      </HeaderNav>
+    </template>
+  </Header>
 
   <Toasts vertical-position="top" horizontal-position="end">
     <template v-for="toast of activeToasts" :key="toast.key">
@@ -52,7 +74,22 @@ import "agnostic-vue/dist/index.css";
 </template>
 
 <style scoped>
+
+.header-top {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .main {
-  padding: 10px 20px;
+  flex:1;
+}
+
+.header-bottom {
+  margin-top: auto; /* Verschiebt den unteren Header ans Seitenende */
+  width: 100%;
+  background-color: #f8f9fa; /* Optional: Hintergrundfarbe für den unteren Header */
+  border-top: 1px solid #dee2e6; /* Optional: obere Linie für den unteren Header */
+  padding: 10px;
 }
 </style>
