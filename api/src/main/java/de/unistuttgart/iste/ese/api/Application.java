@@ -30,12 +30,11 @@ public class Application {
             public void addCorsMappings(@Nonnull CorsRegistry registry) {
                 // allow CORS requests for all resources and HTTP methods from the frontend origin
                 CorsRegistration registration = registry.addMapping("/**")
-                    .allowedMethods("OPTIONS", "HEAD", "GET", "PUT", "POST", "DELETE")
-                    .allowedOrigins(localOrigin, vmOrigin);
-                String frontendUrl = System.getenv("FRONTEND_URL");
+                    .allowedMethods("OPTIONS", "HEAD", "GET", "PUT", "POST", "DELETE");
+                /*String frontendUrl = System.getenv("FRONTEND_URL");
                 if (frontendUrl != null) {
                     registration.allowedOrigins(frontendUrl);
-                }
+                }*/
             }
         };
     }
