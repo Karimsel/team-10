@@ -12,17 +12,30 @@ const isShoopingHovered = ref(false);
 const isMealPlanHovered = ref(false);
 const isRecipesHovered = ref(false);
 const isStatisticsHovered = ref(false);
+
+let name = " ";
+
+const filter = () => {
+  
+  console.log("Here Dropdown to filter");
+}
+
 </script>
 
 <template>
   <div id="app" class="app-container">
     <Header isHeaderContentStart class="header-top">
       <template v-slot:headernav>
-       
-         hi
-          
-          
-        
+        <div class="logo">AEB</div>
+        <div class="header-nav-content">
+          <input type="text" class="searchbar" v-model="name"/>
+          <div class="search-icon">
+            <font-awesome-icon :icon="['fas', 'magnifying-glass']" size="2xl" style="color: #f5f5f5;" class="searchicon"/>
+            <button class="filter-button" @click="filter">
+              <font-awesome-icon :icon="['fas', 'filter']" size="2xl" style="color: #f5f5f5;"/>
+            </button>
+          </div>
+        </div>
       </template>
     </Header>
 
@@ -31,43 +44,44 @@ const isStatisticsHovered = ref(false);
     </div>
   </div>
 
-  <Header isHeaderContentStart class="header-bottom">
-    <template v-slot:headernav>
-      <HeaderNav class="header-nav">
-        <HeaderNavItem class="header-nav-item">
+  <div isHeaderContentStart class="sidebar">
+    
+      <div class="header-nav">
+        <div class="header-nav-item">
           <RouterLink to="/" class="icon">
             <font-awesome-icon :icon="['fas', 'basket-shopping']" :bounce="isShoopingHovered" 
             @mouseover="isShoopingHovered = true" @mouseleave="isShoopingHovered = false" size="2xl" />
             ShoppingList
           </RouterLink>
-        </HeaderNavItem>
-        <HeaderNavItem class="header-nav-item">
+        </div>
+        <div class="header-nav-item">
           <RouterLink to="/mealPlan" class="icon">
             <font-awesome-icon :icon="['fas', 'calendar-days']" size="2xl" 
             :bounce="isMealPlanHovered" 
             @mouseover="isMealPlanHovered = true" @mouseleave="isMealPlanHovered = false"/>
             MealPlan
           </RouterLink>
-        </HeaderNavItem>
-        <HeaderNavItem class="header-nav-item">
+        </div>
+        <div class="header-nav-item">
           <RouterLink to="/recipes" class="icon">
             <font-awesome-icon :icon="['fas', 'utensils']" size="2xl" 
             :bounce="isRecipesHovered" 
             @mouseover="isRecipesHovered = true" @mouseleave="isRecipesHovered = false"/>
             Recipes
+            
           </RouterLink>
-        </HeaderNavItem>
-        <HeaderNavItem class="header-nav-item">
+        </div>
+        <div class="header-nav-item">
           <RouterLink to="/statistics" class="icon">
             <font-awesome-icon :icon="['fas', 'chart-simple']" size="2xl" 
             :bounce="isStatisticsHovered" 
             @mouseover="isStatisticsHovered = true" @mouseleave="isStatisticsHovered = false"/>
             Statistics
           </RouterLink>
-        </HeaderNavItem>
-      </HeaderNav>
-    </template>
-  </Header>
+        </div>
+      </div>
+    
+    </div>
 
   <Toasts vertical-position="top" horizontal-position="end">
     <template v-for="toast of activeToasts" :key="toast.key">
@@ -91,6 +105,7 @@ const isStatisticsHovered = ref(false);
 </template>
 
 <style scoped>
+
 .app-container {
   display: flex;
   flex-direction: column;
@@ -100,45 +115,61 @@ const isStatisticsHovered = ref(false);
 
 
 .header-top {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background-color: #f8f8f8;
-  padding: 10px;
+  background-color: #52a5ff; 
+  padding: 20px;
+  padding-bottom: 20px;
   text-align: center;
-  height: 50px; 
-  z-index: 10; /* Ensures it stays above the main content */
+  height: 75px; 
+  z-index: 10; 
+  overflow: hidden;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-.header-bottom {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #f8f8f8;
-  padding: 10px;
-  text-align: center;
-  height: 80px; 
-  z-index: 10; /* Ensures it stays above the main content */
-  border-top: none; 
-  box-shadow: none;
+.header-nav-content {
   display: flex;
-  justify-content: center;
+  flex-direction: row; 
+  align-items: center; 
+  text-align: center; 
+  padding: 250px;
+  
+}
 
+.sidebar {
+  position: fixed;
+  top: 80px; /* Position below the top header */
+  left: 0;
+  width: 150px; 
+  height: calc(100vh - 80px); 
+  background-color: #f8f8f8;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: stretch; /* Ensure items stretch to full width */
+  z-index: 10;
+  border-right: none;
 }
 
 .main {
   flex-grow: 1;
-  padding-top: 50px; 
-  padding-bottom: 85px; 
+  padding-top: 75px; 
+  padding-left: 160px; 
   overflow-y: auto; 
   background-color: #f8f8f8;
 }
-
-.header-nav-item {
- padding-left: 175px;
+.header-nav {
+  display: flex;
+  flex-direction: column; /* Change this to column */
+  
 }
+
 
 .header-nav a:hover {
   transition: color 0.3s ease;
@@ -146,19 +177,49 @@ const isStatisticsHovered = ref(false);
   
 }
 
+.header-nav-item{
+  padding-bottom: 50px;
+  padding-top: 20px;
+}
+
 .router-link-active {
-  color: #007BFF; 
+  color: #1E3050;
 }
 
 .icon{
+ 
   display: flex;
   flex-direction: column;
   align-items: center; 
   text-align: center;
 }
 
+.searchbar{
+  width: 500px;
+  border-radius: 50px;
+  border: none;
+  font-size: 16px;
+  
+}
 
+.logo{
+  color: #f5f5f5;
+  font-size: 32px;
+  font-family: Arial, sans-serif;
+}
 
+.searchicon{
+  padding-left: 5px;
+}
 
+.filter-button {
+  background: none; /* Keine Hintergrundfarbe */
+  border: none; /* Kein Rahmen */
+  cursor: pointer; /* Zeiger-Cursor für den Button */
+  padding: 0; /* Keine Padding, damit der Button nur das Icon enthält */
+}
 
+.filter-button:focus {
+  outline: none; /* Entferne den Fokusrahmen */
+}
 </style>
