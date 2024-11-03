@@ -46,15 +46,15 @@ const filter = () => {
 
   <div isHeaderContentStart class="sidebar">
     
-      <div class="header-nav">
-        <div class="header-nav-item">
+      <div class="sidebar-nav">
+        <div class="sidebar-nav-item">
           <RouterLink to="/" class="icon">
             <font-awesome-icon :icon="['fas', 'basket-shopping']" :bounce="isShoopingHovered" 
             @mouseover="isShoopingHovered = true" @mouseleave="isShoopingHovered = false" size="2xl" />
             ShoppingList
           </RouterLink>
         </div>
-        <div class="header-nav-item">
+        <div class="sidebar-nav-item">
           <RouterLink to="/mealPlan" class="icon">
             <font-awesome-icon :icon="['fas', 'calendar-days']" size="2xl" 
             :bounce="isMealPlanHovered" 
@@ -62,7 +62,7 @@ const filter = () => {
             MealPlan
           </RouterLink>
         </div>
-        <div class="header-nav-item">
+        <div class="sidebar-nav-item">
           <RouterLink to="/recipes" class="icon">
             <font-awesome-icon :icon="['fas', 'utensils']" size="2xl" 
             :bounce="isRecipesHovered" 
@@ -71,7 +71,7 @@ const filter = () => {
             
           </RouterLink>
         </div>
-        <div class="header-nav-item">
+        <div class="sidebar-nav-item">
           <RouterLink to="/statistics" class="icon">
             <font-awesome-icon :icon="['fas', 'chart-simple']" size="2xl" 
             :bounce="isStatisticsHovered" 
@@ -124,60 +124,51 @@ const filter = () => {
   right: 0;
   background-color: #52a5ff; 
   padding: 20px;
-  padding-bottom: 20px;
   text-align: center;
   height: 75px; 
-  z-index: 10; 
   overflow: hidden;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
 .header-nav-content {
-  display: flex;
-  flex-direction: row; 
-  align-items: center; 
-  text-align: center; 
-  padding: 250px;
-  
+  display: flex; 
+  padding: 250px; 
 }
 
 .sidebar {
   position: fixed;
-  top: 80px; /* Position below the top header */
+  top: 80px; 
   left: 0;
   width: 150px; 
-  height: calc(100vh - 80px); 
   background-color: #f8f8f8;
   padding: 20px 10px;
   display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: stretch; /* Ensure items stretch to full width */
-  z-index: 10;
+  flex-direction: column; 
   border-right: none;
 }
 
 .main {
   flex-grow: 1;
-  padding-top: 75px; 
+  padding-top: 80px; 
   padding-left: 160px; 
   overflow-y: auto; 
   background-color: #f8f8f8;
 }
-.header-nav {
+.sidebar-nav {
   display: flex;
-  flex-direction: column; /* Change this to column */
+  flex-direction: column; 
   
 }
 
 
-.header-nav a:hover {
+.sidebar-nav a:hover {
   transition: color 0.3s ease;
   color: #007BFF; 
   
 }
 
-.header-nav-item{
+.sidebar-nav-item{
   padding-bottom: 50px;
   padding-top: 20px;
 }
@@ -213,13 +204,13 @@ const filter = () => {
 }
 
 .filter-button {
-  background: none; /* Keine Hintergrundfarbe */
-  border: none; /* Kein Rahmen */
-  cursor: pointer; /* Zeiger-Cursor für den Button */
-  padding: 0; /* Keine Padding, damit der Button nur das Icon enthält */
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  padding: 0; 
 }
 
 .filter-button:focus {
-  outline: none; /* Entferne den Fokusrahmen */
+  outline: none; 
 }
 </style>
