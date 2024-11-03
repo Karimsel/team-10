@@ -26,7 +26,10 @@ const filter = () => {
   <div id="app" class="app-container">
     <Header isHeaderContentStart class="header-top">
       <template v-slot:headernav>
-        <div class="logo">AEB</div>
+        <div class="logo-container">
+          <div class="logo">AEB</div>
+          <div class="name">ShopScript</div> 
+        </div>
         <div class="header-nav-content">
           <input type="text" class="searchbar" v-model="name"/>
           <div class="search-icon">
@@ -192,13 +195,23 @@ const filter = () => {
   font-size: 16px;
   
 }
+.logo-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+ 
+}
 
 .logo{
   color: #f5f5f5;
-  font-size: 32px;
+  font-size: 25px;
   font-family: Arial, sans-serif;
+  
 }
-
+.name {
+  font-size: 20px; 
+  color: #f5f5f5;  
+}
 .searchicon{
   padding-left: 5px;
 }
