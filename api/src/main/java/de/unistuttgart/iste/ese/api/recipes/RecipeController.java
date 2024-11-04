@@ -56,7 +56,7 @@ public class RecipeController {
     @ResponseStatus(HttpStatus.CREATED)
     public Recipe createRecipe(@Valid @RequestBody Recipe requestBody) {
         Recipe recipe = new Recipe(requestBody.getTitle(), requestBody.getWorkTime(),
-                requestBody.getPicUrl(), requestBody.getInstructions());
+                requestBody.getPicUrl(), requestBody.getInstructions(), requestBody.getIngredients());
         Recipe savedRecipe = recipeRepository.save(recipe);
         return savedRecipe;
     }
