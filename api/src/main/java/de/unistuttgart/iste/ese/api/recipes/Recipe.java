@@ -1,50 +1,41 @@
 package de.unistuttgart.iste.ese.api.recipes;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import java.util.List;
 
-import de.unistuttgart.iste.ese.api.ingredients.Ingredient;
 @Entity
 @Table(name = "recipes")
 public class Recipe {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
     @NotNull
-    @Size(min = 1)
+    @Size(min = 1, max = 255)
     private String title;
-    @Min(0)
-    private int workTime;
+
+    @Positive
+    private int timeRequirement;
+
+    private String preperation;
     private String picUrl;
-    @NotNull
-    @Size(min = 1)
-    private String instructions;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private List<Ingredient> ingredients;
 
-    // empty default constructor is necessary for JPA
-    public Recipe() {}
+    public Recipe(){}
 
-    public Recipe(String title, int workTime, String picUrl, String instructions, List<Ingredient> ingredients) {
+    public Recipe(String title, int timeRequirement, String preperation, String picUrl){
         this.title = title;
-        this.workTime = workTime;
+        this.timeRequirement = timeRequirement;
+        this.preperation = preperation;
         this.picUrl = picUrl;
-        this.instructions = instructions;
-        this.ingredients = ingredients;
     }
 
     public long getId() {
@@ -55,12 +46,28 @@ public class Recipe {
         this.id = id;
     }
 
-    public String getTitle() {
+    public void setTitle(String title){
+        this.title = title;
+    }
+
+    public void setTimeRequirement(int timeRequirement){
+        this.timeRequirement = timeRequirement;
+    }
+
+    public String getTitle(){
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public int getTimeRequirement(){
+        return timeRequirement;
+    }
+
+    public String getPreperation(){
+        return preperation;
+    }
+
+    public void setPreperation(String preperation){
+        this.preperation = preperation;
     }
 
     public String getPicUrl() {
@@ -70,29 +77,4 @@ public class Recipe {
     public void setPicUrl(String picUrl) {
         this.picUrl = picUrl;
     }
-
-    public int getWorkTime() {
-        return workTime;
-    }
-
-    public void setWorkTime(int workTime) {
-        this.workTime = workTime;
-    }
-    
-    public String getInstructions() {
-        return instructions;
-    }
-
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
-    }
-
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
 }

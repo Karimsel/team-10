@@ -2,8 +2,8 @@ package de.unistuttgart.iste.ese.api.ingredients;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface IngredientRepository extends CrudRepository<Ingredient, Long> {
-    Ingredient findByName(String name);
+public interface IngredientRepository extends CrudRepository<Ingredients, Long> {
+    Ingredients findByName(String name);
 
-    Ingredient findById(long id);
+    Ingredients findById(long id);
 }
