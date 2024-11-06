@@ -29,6 +29,9 @@ public class IngredientController {
 
             Ingredients salt = new Ingredients("Salt", "Seasoning", "Gramm");
             ingredientRepository.save(salt);
+
+            Ingredients oil = new Ingredients("Sunflower Oil", "Oil", "Mililiter");
+            ingredientRepository.save(oil);
         }
     }
 }
